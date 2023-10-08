@@ -18,7 +18,7 @@ class UserSearch extends User
     {
         return [
             [['id', 'role_id'], 'integer'],
-            [['name', 'email', 'address', 'password_hash'], 'safe'],
+            [['name', 'email', 'phone_number', 'sex', 'address', 'date_of_birth', 'password_hash'], 'safe'],
         ];
     }
 
@@ -60,10 +60,13 @@ class UserSearch extends User
         $query->andFilterWhere([
             'id' => $this->id,
             'role_id' => $this->role_id,
+            'date_of_birth' => $this->date_of_birth,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])
             ->andFilterWhere(['like', 'email', $this->email])
+            ->andFilterWhere(['like', 'phone_number', $this->phone_number])
+            ->andFilterWhere(['like', 'sex', $this->sex])
             ->andFilterWhere(['like', 'address', $this->address])
             ->andFilterWhere(['like', 'password_hash', $this->password_hash]);
 
